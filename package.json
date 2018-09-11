@@ -1,0 +1,14 @@
+{
+  "name": "Monetary",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Artem Alexandrov",
+  "license": "MIT",
+  "dependencies": {
+    "big.js": "^5.1.2",
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
