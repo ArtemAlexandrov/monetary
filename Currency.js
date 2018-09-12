@@ -6,7 +6,7 @@ class Currency {
         this._code = code;
     }
 
-    static buildByCode(code) {
+    static currencyByCode(code) {
         let currency = new Currency({ code });
         this.currencies.push(currency);
         return currency;
@@ -21,7 +21,7 @@ class Currency {
         if (currency) {
             return currency;
         } else {
-            return this.buildByCode(code);
+            return this.currencyByCode(code);
         }
     }
 
