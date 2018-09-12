@@ -13,7 +13,7 @@ class CurrencyRate {
     }
 
     toCurrency() {
-        return this._fromCurrency;
+        return this._toCurrency;
     }
 
     rate() {

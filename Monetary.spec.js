@@ -55,6 +55,25 @@ describe('Monetary', () => {
 
     });
 
+    describe('convert money', () => {
+
+        it('convert 1 BTC to 6500 USD with rate 6500', () => {
+            Monetary.setRate('BTC', 'USD', 6500);
+            let oneBitcoin = new Monetary(1, 'BTC'),
+            manyDollars = new Monetary(6500, 'USD');
+            expect(oneBitcoin.toCurrency('USD').equals(manyDollars)).toBeTruthy();
+        });
+
+        it('convert 6500 USD to 1 BTC with rate 6500', () => {
+            // TODO: Разобраться
+            Monetary.setRate('BTC', 'USD', 6500);
+            let oneBitcoin = new Monetary(1, 'BTC'),
+            manyDollars = new Monetary(6500, 'USD');
+            expect(manyDollars.toCurrency('BTC').equals(oneBitcoin)).toBeTruthy();
+        });
+
+    });
+
 
 
 });

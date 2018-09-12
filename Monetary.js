@@ -1,5 +1,6 @@
 const Currency = require('./Currency');
 const Num = require('./Num');
+const Exchange = require('./Exchange');
 
 class Monetary {
 
@@ -36,7 +37,16 @@ class Monetary {
         return ((this.amount().eq(monet.amount())) && (this.currency().equals(monet.currency())));
     }
 
+    static setRate(fromCurrencyCode, toCurrencyCode, rate) {
+        this.exchange.setRate(fromCurrencyCode, toCurrencyCode, rate);
+    }
+
+    toCurrency(currencyCode) {
+        return new Monetary(Monetary.exchange.convert(this, currencyCode), currencyCode);
+    }
 
 }
+
+Monetary.exchange = new Exchange();
 
 module.exports = Monetary; 
