@@ -1,5 +1,6 @@
 const Currency = require('./Currency');
 const CurrencyRate = require('./CurrencyRate');
+const Num = require('./Num');
 
 class Exchange {
 
@@ -10,10 +11,8 @@ class Exchange {
     setRate(fromCurrencyCode, toCurrencyCode, price) {
         let fromCurrency = Currency.currencyByCode(fromCurrencyCode),
             toCurrency = Currency.currencyByCode(toCurrencyCode),
-            rate = new CurrencyRate(fromCurrency, toCurrency, price),
-            invertedRate = new CurrencyRate(toCurrency, fromCurrency, 1 / price);
+            rate = new CurrencyRate(fromCurrency, toCurrency, price);
         this.rates.push(rate);
-        this.rates.push(invertedRate);
         return rate;
     }
 
@@ -25,7 +24,12 @@ class Exchange {
 
     convert(monetary, toCurrency) {
         let currencyRate = this.getRate(monetary.currency().code(), toCurrency);
-        return currencyRate.rate().times(monetary.amount());
+        if (currencyRate) {
+            return currencyRate.rate().times(monetary.amount());
+        } else {
+            currencyRate = this.getRate(toCurrency, monetary.currency().code());
+            return currencyRate.rate().div(monetary.amount());
+        }
     }
 
 }

@@ -65,7 +65,6 @@ describe('Monetary', () => {
         });
 
         it('convert 6500 USD to 1 BTC with rate 6500', () => {
-            // TODO: Разобраться
             Monetary.setRate('BTC', 'USD', 6500);
             let oneBitcoin = new Monetary(1, 'BTC'),
             manyDollars = new Monetary(6500, 'USD');
