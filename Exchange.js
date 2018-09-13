@@ -23,13 +23,10 @@ class Exchange {
     }
 
     convert(monetary, toCurrency) {
-        let currencyRate = this.getRate(monetary.currency().code(), toCurrency);
-        if (currencyRate) {
-            return currencyRate.rate().times(monetary.amount());
-        } else {
-            currencyRate = this.getRate(toCurrency, monetary.currency().code());
-            return currencyRate.rate().div(monetary.amount());
-        }
+        let currencyRate = this.getRate(monetary.currency().code(), toCurrency),
+            invertRate = this.getRate(toCurrency, monetary.currency().code());
+        if (currencyRate) return currencyRate.rate().times(monetary.amount());
+        if (invertRate) return invertRate.rate().div(monetary.amount());
     }
 
 }
